@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { font-size: 14px; }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #080d1a;
+    color: #dce8ff;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: #0d1425; }
+  ::-webkit-scrollbar-thumb { background: #1a2744; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #243560; }
+}
+
+@layer components {
+  .noc-card {
+    @apply bg-noc-card border border-noc-border rounded-sm p-4 shadow-sm;
+  }
+
+  .noc-card-glow {
+    @apply noc-card;
+  }
+
+  .noc-btn {
+    @apply px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 cursor-pointer select-none;
+  }
+
+  .noc-btn-primary {
+    @apply noc-btn bg-blue-600 text-white hover:bg-blue-500 active:scale-95 border border-blue-500/50 rounded-sm;
+  }
+
+  .noc-btn-cyan {
+    @apply noc-btn border border-noc-cyan text-noc-cyan hover:bg-noc-cyan hover:text-noc-bg active:scale-95;
+  }
+
+  .noc-input {
+    @apply bg-noc-surface border border-noc-border rounded-sm px-4 py-2.5 text-noc-textPri placeholder-noc-textDim outline-none transition-all duration-200 text-sm;
+  }
+
+  .noc-input:focus {
+    @apply border-noc-cyan;
+    box-shadow: 0 0 0 2px rgba(0,212,255,0.1);
+  }
+
+  .badge-critical  { @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-red-900/40 text-red-400 border border-red-700/50; }
+  .badge-high      { @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-orange-900/40 text-orange-400 border border-orange-700/50; }
+  .badge-medium    { @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-yellow-900/40 text-yellow-400 border border-yellow-700/50; }
+  .badge-low       { @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-green-900/40 text-green-400 border border-green-700/50; }
+  .badge-normal    { @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-900/40 text-blue-400 border border-blue-700/50; }
+
+  .status-dot-green  { @apply w-2 h-2 rounded-full bg-noc-green; }
+  .status-dot-yellow { @apply w-2 h-2 rounded-full bg-noc-yellow; }
+  .status-dot-red    { @apply w-2 h-2 rounded-full bg-noc-red; }
+  .status-dot-gray   { @apply w-2 h-2 rounded-full bg-noc-textDim; }
+
+  .metric-value {
+    @apply font-mono text-2xl font-semibold text-noc-textPri tracking-tight;
+  }
+
+  .grid-bg {
+    background-image: linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .glass {
+    background: rgba(13, 20, 37, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .section-title {
+    @apply text-[10px] font-semibold tracking-[0.15em] uppercase text-noc-textSec mb-3;
+  }
+}
+
+/* Recharts custom theming */
+.recharts-cartesian-grid line { stroke: rgba(26,39,68,0.7) !important; }
+.recharts-text { fill: #7a99cc !important; font-size: 11px !important; }
+.recharts-tooltip-wrapper { filter: drop-shadow(0 4px 16px rgba(0,0,0,0.6)); }
+
+/* React Flow custom */
+.react-flow__background { background: transparent !important; }
+.react-flow__edge-path { stroke-width: 1.5; }

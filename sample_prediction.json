@@ -1,0 +1,12 @@
+{
+    "site": "Branch-2",
+    "risk": "High",
+    "confidence": 91,
+    "time_to_impact": "18 minutes",
+    "metrics": {
+        "latency_ms": 72,
+        "packet_loss_percent": 4.0,
+        "utilization_percent": 95.0,
+        "bgp_flaps": 7
+    }
+}

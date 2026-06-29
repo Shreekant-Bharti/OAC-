@@ -1,0 +1,69 @@
+# ============================================================
+# Offline AI NOC Copilot — Python Dependencies
+# ISRO Bharatiya Antariksh Hackathon 2026
+#
+# Install all packages with:
+#   pip install -r requirements.txt
+#
+# Verified on: Python 3.12.7 | Windows 11
+# Last updated: Day 1 Setup
+# ============================================================
+
+
+# ----------------------------------------------------------
+# LLM Runtime — Talks to Ollama (Phi-3) running locally
+# ----------------------------------------------------------
+ollama==0.6.2
+
+
+# ----------------------------------------------------------
+# RAG Orchestration — Coordinates the full AI pipeline:
+# PDF loading → chunking → retrieval → LLM → response
+# ----------------------------------------------------------
+langchain==1.3.11
+langchain-community==0.4.2
+
+
+# ----------------------------------------------------------
+# Vector Database — Stores and retrieves document embeddings
+# Runs 100% offline on disk (no cloud, no server needed)
+# ----------------------------------------------------------
+chromadb==1.5.9
+
+
+# ----------------------------------------------------------
+# Offline Embeddings — Converts text to vectors locally
+# Uses HuggingFace models, no API key required
+# ----------------------------------------------------------
+sentence-transformers==5.2.2
+
+
+# ----------------------------------------------------------
+# PDF Parser — Reads and extracts text from PDF runbooks
+# ----------------------------------------------------------
+pypdf==6.14.2
+
+
+# ----------------------------------------------------------
+# Web Framework — Exposes RAG pipeline as REST API
+# React frontend will call these endpoints
+# ----------------------------------------------------------
+fastapi==0.128.0
+uvicorn==0.40.0
+
+
+# ----------------------------------------------------------
+# Configuration — Loads settings from .env file
+# Keeps secrets and paths out of source code
+# ----------------------------------------------------------
+python-dotenv==1.0.0
+
+
+# ----------------------------------------------------------
+# ML Engine B — Prediction pipeline (XGBoost + RF Regressor)
+# ----------------------------------------------------------
+joblib>=1.3.0
+xgboost>=2.0.0
+scikit-learn>=1.4.0
+numpy>=1.26.0
+pandas>=2.1.0
