@@ -14,6 +14,15 @@ export default defineConfig({
         target: 'http://localhost:8000',
         changeOrigin: true,
       },
+      '/esp32': {
+        target: 'https://clock-manicure-unshipped.ngrok-free.dev',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/esp32/, ''),
+        headers: {
+          'ngrok-skip-browser-warning': 'true',
+        },
+      },
     },
   },
 })
+

@@ -7,26 +7,36 @@ export function usePredict() {
   const [loading, setLoading] = useState(false)
   const [error,   setError]   = useState(null)
 
-  const run = useCallback(async (telemetry) => {
-    setLoading(true)
+  /**
+   * run(telemetry, options)
+   *  options.silent = true  → no loading spinner, no toast — just silently updates `result`
+   *  options.silent = false → full UI feedback (spinner + toast)
+   */
+  const run = useCallback(async (telemetry, options = {}) => {
+    const { silent = false } = options
     setError(null)
-    const toastId = toast.loading('Running ML prediction…')
+
+    if (!silent) setLoading(true)
+    const toastId = silent ? null : toast.loading('Running ML prediction…')
+
     try {
       const data = await apiPredict(telemetry)
       setResult(data)
-      toast.success(`Prediction complete — Risk: ${data.risk}`, { id: toastId })
+      if (!silent && toastId) {
+        toast.success(`Prediction — Risk: ${data.risk}`, { id: toastId })
+      }
       return data
     } catch (e) {
       let msg = 'An unexpected error occurred.'
-      if (e.message.includes('timeout')) msg = 'Request timed out. The ML Engine is taking too long.'
-      else if (e.message.includes('Network Error')) msg = 'Backend offline. Please check your network connection or server status.'
-      else if (e.message) msg = `Error: ${e.message}`
-      
+      if (e.message?.includes('timeout'))      msg = 'Request timed out.'
+      else if (e.message?.includes('Network')) msg = 'Backend offline.'
+      else if (e.message)                      msg = `Error: ${e.message}`
+
       setError(msg)
-      toast.error(msg, { id: toastId })
+      if (!silent && toastId) toast.error(msg, { id: toastId })
       return null
     } finally {
-      setLoading(false)
+      if (!silent) setLoading(false)
     }
   }, [])
 

@@ -43,24 +43,23 @@ export const MOCK_ALERTS = [
   { id: 3, level: 'medium',   title: 'BGP Route Flap Detected', site: 'HQ-Mumbai', eta: '21:00', time: '10:21 AM' },
 ]
 
+// ── Hub-and-spoke topology: Intelligent Hub ─── Branches A/B/C + DataCentre ──
 export const TOPOLOGY_NODES_INIT = [
-  { id: 'hq-m',  label: 'HQ Mumbai',  type: 'hq',      status: 'healthy',  ip: '10.0.0.1',  x: 320, y: 40  },
-  { id: 'pe1',   label: 'PE-MUM-01',  type: 'router',  status: 'healthy',  ip: '10.0.1.1',  x: 180, y: 160 },
-  { id: 'pe2',   label: 'PE-DEL-01',  type: 'router',  status: 'warning',  ip: '10.0.2.1',  x: 460, y: 160 },
-  { id: 'core',  label: 'MPLS Core',  type: 'core',    status: 'healthy',  ip: '10.0.0.2',  x: 320, y: 270 },
-  { id: 'dc',    label: 'Datacenter', type: 'dc',      status: 'healthy',  ip: '10.0.3.1',  x: 320, y: 390 },
-  { id: 'br1',   label: 'Branch-1',   type: 'branch',  status: 'healthy',  ip: '192.168.1.1', x: 80,  y: 460 },
-  { id: 'br2',   label: 'Branch-2',   type: 'branch',  status: 'critical', ip: '192.168.1.2', x: 320, y: 510 },
-  { id: 'br3',   label: 'Branch-3',   type: 'branch',  status: 'warning',  ip: '192.168.1.3', x: 560, y: 460 },
+  // Central Intelligent Hub
+  { id: 'hub',   label: 'Intelligent Hub', type: 'hub',    status: 'healthy',  ip: '10.0.0.1',    x: 300, y: 200 },
+  // DataCentre
+  { id: 'dc',    label: 'DataCentre',      type: 'dc',     status: 'healthy',  ip: '10.0.3.1',    x: 300, y: 40  },
+  // Branches
+  { id: 'br-a',  label: 'Branch A',        type: 'branch', status: 'healthy',  ip: '192.168.1.10', x: 60,  y: 360 },
+  { id: 'br-b',  label: 'Branch B',        type: 'branch', status: 'critical', ip: '192.168.1.20', x: 300, y: 420 },
+  { id: 'br-c',  label: 'Branch C',        type: 'branch', status: 'warning',  ip: '192.168.1.30', x: 540, y: 360 },
 ]
 
 export const TOPOLOGY_EDGES_INIT = [
-  { id: 'e1', source: 'hq-m', target: 'pe1', label: '18ms / 0.1%' },
-  { id: 'e2', source: 'hq-m', target: 'pe2', label: '22ms / 0.3%' },
-  { id: 'e3', source: 'pe1',  target: 'core',label: '8ms / 0.05%'  },
-  { id: 'e4', source: 'pe2',  target: 'core',label: '10ms / 0.1%'  },
-  { id: 'e5', source: 'core', target: 'dc',  label: '5ms / 0.02%'  },
-  { id: 'e6', source: 'dc',   target: 'br1', label: '24ms / 0.2%'  },
-  { id: 'e7', source: 'dc',   target: 'br2', label: '72ms / 4.0%', animated: true },
-  { id: 'e8', source: 'dc',   target: 'br3', label: '35ms / 1.2%'  },
+  // Hub ↔ DataCentre
+  { id: 'e-hub-dc',  source: 'hub',  target: 'dc',   label: '5ms / 0.02%'   },
+  // Hub ↔ Branches
+  { id: 'e-hub-bra', source: 'hub',  target: 'br-a', label: '18ms / 0.1%'   },
+  { id: 'e-hub-brb', source: 'hub',  target: 'br-b', label: '72ms / 4.0%', animated: true },
+  { id: 'e-hub-brc', source: 'hub',  target: 'br-c', label: '35ms / 1.2%'   },
 ]

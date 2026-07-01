@@ -3,7 +3,7 @@ import {
   AreaChart, Area, LineChart, Line,
   XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend,
 } from 'recharts'
-import { generateChartHistory } from '../../utils/mockData'
+
 
 const CHART_STYLE = {
   background: 'transparent',
@@ -41,7 +41,7 @@ export function LatencyChart({ data }) {
 
   return (
     <ChartCard title="Latency (ms)">
-      <ResponsiveContainer width="100%" height={120}>
+      <ResponsiveContainer width="100%" height={160}>
         <AreaChart data={chartData} style={CHART_STYLE}>
           <defs>
             <linearGradient id="grad-lat" x1="0" y1="0" x2="0" y2="1">
@@ -68,7 +68,7 @@ export function PacketLossChart({ data }) {
 
   return (
     <ChartCard title="Packet Loss (%)">
-      <ResponsiveContainer width="100%" height={120}>
+      <ResponsiveContainer width="100%" height={160}>
         <AreaChart data={chartData} style={CHART_STYLE}>
           <defs>
             <linearGradient id="grad-pl" x1="0" y1="0" x2="0" y2="1">
@@ -95,7 +95,7 @@ export function UtilizationChart({ data }) {
 
   return (
     <ChartCard title="Utilization (%)">
-      <ResponsiveContainer width="100%" height={120}>
+      <ResponsiveContainer width="100%" height={160}>
         <AreaChart data={chartData} style={CHART_STYLE}>
           <defs>
             <linearGradient id="grad-util" x1="0" y1="0" x2="0" y2="1">
